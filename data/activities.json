@@ -1,0 +1,66 @@
+{
+    "activities": [
+      {
+        "pageId": 1,
+        "type": "radio",
+        "prompt": "What did Luna notice in the sky?",
+        "options": [
+          "All the stars were shining normally.",
+          "There was a missing star.",
+          "The moon was too bright today."
+        ],
+        "correctIndex": 1
+      },
+      {
+        "pageId": 2,
+        "type": "checkbox",
+        "prompt": "Select the sounds Luna heard in the forest:",
+        "options": [
+          "Crickets chirping",
+          "Leaves rustling",
+          "Car horns",
+          "A bubbling stream"
+        ],
+        "correctIndexes": [0, 1, 3]
+      },
+      {
+        "pageId": 3,
+        "type": "select",
+        "prompt": "Which animal helped Luna on this page?",
+        "options": [
+          "A squirrel",
+          "Oliver the owl",
+          "A butterfly"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "pageId": 4,
+        "type": "emoji",
+        "prompt": "How do you think Luna feels crossing the river?",
+        "options": ["😊", "😨", "😐"],
+        "correctIndex": 0
+      },
+      {
+        "pageId": 5,
+        "type": "text",
+        "prompt": "Why do you think Finn and Dara helped Luna?",
+        "placeholder": "Type your answer..."
+      },
+      {
+        "pageId": 6,
+        "type": "textarea",
+        "prompt": "Describe the star using your own words:",
+        "placeholder": "Bright, tiny, warm..."
+      },
+      {
+        "pageId": 7,
+        "type": "range",
+        "prompt": "Rate how much you liked this page:",
+        "min": 1,
+        "max": 5,
+        "default": 3
+      }
+    ]
+  }
+  
