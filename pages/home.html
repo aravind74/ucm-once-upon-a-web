@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Luna and the Missing Star – Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body class="home-page">
+
+  <div class="home-container">
+
+    <div class="home-right">
+      <img src="../assets/home.png" alt="Cover illustration" class="home-cover-img" />
+    </div>
+
+    <!-- LEFT SIDE: Text + Input -->
+    <div class="home-left">
+      <h1 class="home-title">Luna and the Missing Star</h1>
+
+      <p class="home-tagline">
+        A magical night-time adventure awaits.<br />
+      </p>
+
+      <!-- Short summary block -->
+      <div class="home-summary">
+        <p class="home-summary-title">In this interactive story, you will:</p>
+        <ul class="home-summary-list">
+          <li>Read 7 short, illustrated pages</li>
+          <li>Answer fun mini questions after each page</li>
+          <li>Collect stars as rewards for your answers</li>
+        </ul>
+      </div>
+
+      <section class="home-section">
+        <p>
+          Enter your name to begin reading.
+        </p>
+
+        <div class="home-name-field">
+          <label for="reader-name">Your name:</label><br />
+          <input type="text" id="reader-name" class="section-control" placeholder="Type your name here" />
+        </div>
+
+        <div class="home-extra-control">
+          <label for="reader-mode">Choose your reading mode:</label><br />
+          <select id="reader-mode" name="reader-mode" class="section-control">
+            <option value="normal">Normal mode</option>
+            <option value="guided">Guided (more hints)</option>
+            <option value="challenge">Challenge (less hints)</option>
+          </select>
+        </div>
+        <br>
+
+        <button id="startStoryBtn" class="primary-btn home-start-btn">
+          Start Reading
+        </button>
+
+        <p id="home-feedback" class="activity-feedback"></p>
+      </section>
+    </div>
+
+    <!-- RIGHT SIDE: Cover Image -->
+
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../shared.js"></script>
+  <script src="../js/home.js"></script>
+
+</body>
+
+</html>

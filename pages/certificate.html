@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The End – Certificate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+  <main>
+    <section id="end-page">
+      <h2>The End 🎉</h2>
+      <p>Great job! You finished reading <strong>Luna and the Missing Star</strong>.</p>
+
+      <section id="certificate-section">
+        <h3>Your Reader Certificate</h3>
+
+        <label for="child-name">Type your name:</label><br />
+        <input
+          type="text"
+          id="child-name"
+          name="child-name"
+          placeholder="Your name here"
+        />
+        <button type="button" id="generate-certificate-btn">
+          Show My Certificate
+        </button>
+
+        <div id="certificate-display">
+          <!-- JS will fill this with certificate text and final stars -->
+        </div>
+
+        <p id="star-summary">
+          <!-- JS: "You collected X stars during the story!" -->
+        </p>
+      </section>
+    </section>
+
+    <nav>
+      <a href="page8-about.html">« Back to About</a> |
+      <a href="page0-home.html">Return to Home</a>
+    </nav>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/shared.js"></script>
+  <script src="../js/page9-end.js"></script>
+</body>
+</html>

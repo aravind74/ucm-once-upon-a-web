@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About the Author</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+  <main>
+    <section id="about-page">
+      <h2>About the Author</h2>
+
+      <p><strong>Name:</strong> <span id="author-name">Loading...</span></p>
+      <p><strong>Role:</strong> <span id="author-role"></span></p>
+      <p id="author-bio"></p>
+
+      <section id="about-feedback">
+        <h3>Send a Tiny Note</h3>
+        <form id="about-form">
+          <label for="about-email">Your email (optional):</label><br />
+          <input type="email" id="about-email" name="about-email" /><br /><br />
+
+          <label for="about-message">What did you like about the story?</label><br />
+          <textarea
+            id="about-message"
+            name="about-message"
+            rows="3"
+            cols="40"
+          ></textarea><br />
+
+          <button type="button" id="about-submit">Submit</button>
+        </form>
+
+        <p id="about-feedback-text"></p>
+      </section>
+    </section>
+
+    <nav>
+      <a href="page7.html">« Back to Story</a> |
+      <a href="page9-end.html">Go to Certificate »</a>
+    </nav>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../js/shared.js"></script>
+  <script src="../js/page8-about.js"></script>
+</body>
+</html>
