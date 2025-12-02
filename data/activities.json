@@ -36,11 +36,11 @@
       },
       {
         "pageId": 4,
-        "type": "emoji",
-        "prompt": "How do you think Luna feels crossing the river?",
-        "options": ["😊", "😨", "😐"],
-        "correctIndex": 0
-      },
+        "type": "fill",
+        "prompt": "Fill in the missing word.",
+        "sentence": "Luna stepped carefully on the ___ stones.",
+        "answer": "stepping"
+      },      
       {
         "pageId": 5,
         "type": "text",

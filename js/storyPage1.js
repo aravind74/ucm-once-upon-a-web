@@ -1,4 +1,5 @@
-// js/page1.js
+//storyPage1.js
+//Created by Aravind Sajeev Kumar
 $(document).ready(function () {
   var PAGE_ID = 1;
 
@@ -6,10 +7,8 @@ $(document).ready(function () {
   loadStoryPage(PAGE_ID, function (page) {
     if (!page) return;
 
-    // Heading
     $("#story-heading-1").text(page.heading || "Page 1");
 
-    // Story paragraphs
     var $storyText = $("#story-text-1");
     $storyText.empty();
     if (Array.isArray(page.text)) {
@@ -17,7 +16,7 @@ $(document).ready(function () {
         $("<p>").text(line).appendTo($storyText);
       });
     }
-  });
+  }); //loadStoryPage()
 
   // 2) Load activity
   loadActivityForPage(PAGE_ID, function (activity) {
@@ -28,7 +27,6 @@ $(document).ready(function () {
     var $optionsContainer = $("#activity-options-1");
     $optionsContainer.empty();
 
-    // Only handling "radio" type here (for page 1)
     if (activity.type === "radio" && Array.isArray(activity.options)) {
       activity.options.forEach(function (optionText, index) {
         var id = "q1-option-" + index;
@@ -50,10 +48,17 @@ $(document).ready(function () {
       });
 
       let attempts = 0;
-      $("#check-answer-1").on("click", function () {
+      const $checkBtn = $("#check-answer-1");
+      const $feedback = $("#activity-feedback-1");
+
+      function disableActivityPermanently() {
+        $checkBtn.prop("disabled", true).addClass("btn-disabled");
+        $("input[name='q1']").prop("disabled", true);
+      } //disableActivityPermanently()
+
+      $checkBtn.on("click", function () {
         var mode = getReaderMode();
         var selectedVal = $("input[name='q1']:checked").val();
-        var $feedback = $("#activity-feedback-1");
 
         if (selectedVal === undefined) {
           setFeedback($feedback, "Please pick an answer first.", null);
@@ -63,39 +68,46 @@ $(document).ready(function () {
         var selectedIndex = parseInt(selectedVal, 10);
 
         if (selectedIndex === activity.correctIndex) {
+          // Correct answer: feedback, award star, then disable button + options
           setFeedback($feedback, "Great job! That's correct. 🌟", true);
-        } else {
-          // Different behavior depending on mode
-          switch (mode) {
-            case "guided":
-              setFeedback(
-                $feedback,
-                "Hint: Luna noticed something missing in the sky. Try again! 😊",
-                false
-              );
-              break;
-            case "normal":
-              setFeedback($feedback, "Not quite, try again!", false);
-              break;
-            case "challenge":
-              attempts++;
-              if (attempts >= 2) {
-                $("#check-answer-1").prop("disabled", true);
-                setFeedback($feedback, "No more attempts in Challenge Mode.", false);
-              }
-              else {
-                setFeedback($feedback, "Incorrect. One last try!", false);
-                $("#check-answer-1").prop("disabled", true);
+          awardStarForPage(PAGE_ID);
+          disableActivityPermanently();
+          return;
+        }
 
-                setTimeout(function () {
-                  $("#check-answer-1").prop("disabled", false);
-                }, 5000);
-              }
-              break;
-          }
+        // Wrong answer — behavior depends on mode
+        switch (mode) {
+          case "guided":
+            setFeedback(
+              $feedback,
+              "Hint: Luna noticed something missing in the sky. Try again! 😊",
+              false
+            );
+            break;
+
+          case "normal":
+            setFeedback($feedback, "Not quite, try again!", false);
+            break;
+
+          case "challenge":
+            attempts++;
+
+            if (attempts >= 2) {
+              // Out of chances in challenge mode: disable permanently
+              setFeedback($feedback, "No more attempts in Challenge Mode.", false);
+              disableActivityPermanently();
+            } else {
+              // First wrong attempt in challenge: temporary lockout
+              setFeedback($feedback, "Incorrect. One last try! Take 5 seconds to think before you answer.", false);
+              $checkBtn.prop("disabled", true).addClass("btn-disabled");
+              //Time-out for 5 seconds
+              setTimeout(function () {
+                $checkBtn.prop("disabled", false).removeClass("btn-disabled");
+              }, 5000);
+            }
+            break;
         }
       });
-
     }
-  });
+  }); //loadActivityForPage()
 });

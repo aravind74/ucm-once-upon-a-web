@@ -1,4 +1,5 @@
-// js/page2.js
+//storyPage2.js
+//Created by Aravind Sajeev Kumar
 $(document).ready(function () {
   var PAGE_ID = 2;
   let attempts = 0;
@@ -32,6 +33,7 @@ $(document).ready(function () {
       activity.options.forEach(function (opt, index) {
         var id = "p2-opt-" + index;
 
+        //Create label and input tags dynamically.
         var $label = $("<label>")
           .attr("for", id)
           .addClass("option-label")
@@ -47,9 +49,16 @@ $(document).ready(function () {
         $container.append($wrap);
       });
 
-      $("#check-answer-2").on("click", function () {
+      const $checkBtn = $("#check-answer-2");
+      const $feedback = $("#activity-feedback-2");
+
+      function disableActivityPermanently() {
+        $checkBtn.prop("disabled", true).addClass("btn-disabled");
+        $("#activity-options-2 input[type='checkbox']").prop("disabled", true);
+      }
+
+      $checkBtn.on("click", function () {
         var mode = getReaderMode();
-        var $feedback = $("#activity-feedback-2");
 
         var selectedIndexes = [];
         $("#activity-options-2 input:checked").each(function () {
@@ -65,30 +74,40 @@ $(document).ready(function () {
         var chosen = selectedIndexes.slice().sort().join(",");
 
         if (correct === chosen) {
-          setFeedback($feedback, "Perfect! You picked all the forest sounds. 🌟", true);
-        } else {
-          if (mode === "guided") {
-            setFeedback(
-              $feedback,
-              "Hint: Think about sounds you usually hear in a quiet forest, not in a busy city. 😊",
-              false
-            );
-          } else if (mode === "normal") {
-            setFeedback($feedback, "Not quite, try again!", false);
-          } else if (mode === "challenge") {
-            attempts++;
+          setFeedback(
+            $feedback,
+            "Perfect! You picked all the forest sounds. 🌟",
+            true
+          );
+          awardStarForPage(PAGE_ID);
+          disableActivityPermanently();
+          return;
+        }
 
-            if (attempts >= 2) {
-              $("#check-answer-2").prop("disabled", true);
-              setFeedback($feedback, "No more attempts in Challenge Mode.", false);
-            } else {
-              setFeedback($feedback, "Incorrect. One last try!", false);
-              $("#check-answer-2").prop("disabled", true);
+        if (mode === "guided") {
+          setFeedback(
+            $feedback,
+            "Hint: Think about sounds you usually hear in a quiet forest, not in a busy city. 😊",
+            false
+          );
+        } else if (mode === "normal") {
+          setFeedback($feedback, "Not quite, try again!", false);
+        } else if (mode === "challenge") {
+          attempts++;
 
-              setTimeout(function () {
-                $("#check-answer-2").prop("disabled", false);
-              }, 5000);
-            }
+          if (attempts >= 2) {
+            // Out of tries
+            setFeedback($feedback, "No more attempts in Challenge Mode.", false);
+            disableActivityPermanently();
+          } else {
+            // First wrong attempt in Challenge: temporary lock
+            setFeedback($feedback, "Incorrect. One last try! Take 5 seconds to think before you answer.", false);
+
+            $checkBtn.prop("disabled", true).addClass("btn-disabled");
+
+            setTimeout(function () {
+              $checkBtn.prop("disabled", false).removeClass("btn-disabled");
+            }, 5000);
           }
         }
       });

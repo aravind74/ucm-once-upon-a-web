@@ -1,48 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <title>The End – Certificate</title>
+  <title>Luna – Reading Certificate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../style.css" />
 </head>
+
 <body>
-  <main>
-    <section id="end-page">
-      <h2>The End 🎉</h2>
-      <p>Great job! You finished reading <strong>Luna and the Missing Star</strong>.</p>
+  <div class="page-wrapper">
 
-      <section id="certificate-section">
-        <h3>Your Reader Certificate</h3>
+    <!-- Header -->
+    <header class="site-header">
+      <h1 class="site-title">Luna and the Missing Star</h1>
+      <div class="site-meta">
+        <span class="page-indicator">Reading Certificate</span>
+      </div>
+    </header>
 
-        <label for="child-name">Type your name:</label><br />
-        <input
-          type="text"
-          id="child-name"
-          name="child-name"
-          placeholder="Your name here"
-        />
-        <button type="button" id="generate-certificate-btn">
-          Show My Certificate
-        </button>
+    <!-- Centered certificate -->
+    <main class="page-content certificate-center">
+      <div class="certificate-card-beige">
 
-        <div id="certificate-display">
-          <!-- JS will fill this with certificate text and final stars -->
+        <div class="certificate-heading">⭐ Storybook Achievement ⭐</div>
+
+        <h2 class="certificate-title">Certificate of Bravery & Friendship</h2>
+
+        <p class="certificate-text">This certificate is proudly awarded to</p>
+
+        <div id="certificate-name-display" class="certificate-name-display">
+          Reader Name
         </div>
 
-        <p id="star-summary">
-          <!-- JS: "You collected X stars during the story!" -->
+        <p class="certificate-text">
+          for completing <strong>Luna and the Missing Star</strong> and showing
+          curiosity, kindness, and courage throughout the journey.
         </p>
-      </section>
-    </section>
 
-    <nav>
-      <a href="page8-about.html">« Back to About</a> |
-      <a href="page0-home.html">Return to Home</a>
-    </nav>
-  </main>
+        <hr class="certificate-divider" />
 
+        <div class="certificate-stats">
+          <div class="certificate-block">
+            <span class="label">Quiz Stars</span><br />
+            <span id="certificate-stars" class="certificate-stars">☆☆☆☆☆☆☆</span>
+          </div>
+
+          <div class="certificate-block">
+            <span class="label">Date</span><br />
+            <span id="certificate-date"></span>
+          </div>
+
+          <div class="certificate-block">
+            <span class="label">Signed</span><br />
+            Luna &amp; Friends
+          </div>
+        </div>
+
+      </div>
+
+      <button id="print-certificate" class="primary-btn certificate-print-btn">
+        Print / Save Certificate
+      </button>
+
+      <p id="certificate-status" class="activity-feedback"></p>
+    </main>
+
+  </div>
+
+  <!-- Navigation arrows -->
+  <div class="side-nav side-nav-left">
+    <a href="starFacts.html" class="side-nav-link prev" aria-label="Previous page">
+      &#10094;
+    </a>
+  </div>
+
+  <div class="side-nav side-nav-right">
+    <a href="about.html" class="side-nav-link next" aria-label="Next page">
+      &#10095;
+    </a>
+  </div>
+
+  <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="../js/shared.js"></script>
-  <script src="../js/page9-end.js"></script>
+  <script src="../shared.js"></script>
+  <script src="../js/certificate.js"></script>
 </body>
+
 </html>

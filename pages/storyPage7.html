@@ -16,6 +16,7 @@
       <h1 class="site-title">Luna and the Missing Star</h1>
       <div class="site-meta">
         <span class="page-indicator">Page 7 of 7</span>
+        <span class="star-counter">⭐ Stars: 0</span>
       </div>
     </header>
 
@@ -43,10 +44,16 @@
             <p id="activity-prompt-7"></p>
 
             <form id="activity-form-7">
-              <input type="range" id="activity-range-7" name="activity-range-7" min="1" max="5" value="3" />
-              <span id="activity-range-value-7">3</span> / 5
-              <br />
+              <div id="star-rating-7" class="star-rating" aria-label="Rate the ending out of 5 stars">
+                <button type="button" class="star-icon" data-value="1" aria-label="1 star">★</button>
+                <button type="button" class="star-icon" data-value="2" aria-label="2 stars">★</button>
+                <button type="button" class="star-icon" data-value="3" aria-label="3 stars">★</button>
+                <button type="button" class="star-icon" data-value="4" aria-label="4 stars">★</button>
+                <button type="button" class="star-icon" data-value="5" aria-label="5 stars">★</button>
+              </div>
 
+              <input type="hidden" id="rating-value-7" value="0" />
+              <br />
               <button type="button" id="check-answer-7" class="primary-btn">
                 Save Rating
               </button>
@@ -55,7 +62,6 @@
             <p id="activity-feedback-7" class="activity-feedback"></p>
           </section>
         </div>
-
       </section>
     </main>
 
@@ -68,7 +74,7 @@
   </div>
 
   <div class="side-nav side-nav-right">
-    <a href="home.html" class="side-nav-link next" aria-label="Next page">
+    <a href="starFacts.html" class="side-nav-link next" aria-label="Next page">
       &#10095; <!-- right arrow -->
     </a>
   </div>

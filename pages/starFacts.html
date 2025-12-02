@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Star Facts Library – Bonus Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Use the SAME stylesheet as story pages -->
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <div class="page-wrapper">
+
+    <!-- Header -->
+    <header class="site-header">
+      <h1 class="site-title">Star Facts Library</h1>
+      <p id="star-facts-summary"></p>
+      <div class="site-meta">
+        <span class="page-indicator">These fun facts are loaded from an <strong>XML file</strong> using JavaScript.
+            Luna and her friends collected them to learn more about the night sky.</span>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="page-content">
+      <section class="story-layout">
+
+        <!-- Just a text column here, no illustration -->
+        <div class="story-column text-column">
+
+          <!-- XML Activity card -->
+          <section class="activity-card" style="padding-bottom: 22px;">
+            <h3>Explore the Night Sky</h3>
+
+            <button type="button" id="load-facts" class="primary-btn">
+              Load Star Facts
+            </button>
+
+            <p id="facts-status" class="activity-feedback"></p>
+
+            <!-- Facts will be injected here -->
+            <div id="facts-list" class="facts-list">
+              <!-- JS will populate star facts -->
+            </div>
+          </section>
+        </div>
+
+      </section>
+    </main>
+
+  </div>
+
+  <!-- Side navigation arrows (same as other pages) -->
+  <div class="side-nav side-nav-left">
+    <a href="storyPage7.html" class="side-nav-link prev" aria-label="Previous page">
+      &#10094;
+    </a>
+  </div>
+
+  <div class="side-nav side-nav-right">
+    <a href="certificate.html" class="side-nav-link next" aria-label="Next page">
+      &#10095;
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="../shared.js"></script>
+  <script src="../js/starFacts.js"></script>
+</body>
+
+</html>

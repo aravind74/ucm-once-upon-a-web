@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<starFacts>
+  <fact id="1">
+    <title>The North Star</title>
+    <summary>
+      Polaris, also called the North Star, appears almost fixed in the night
+      sky and has helped travelers find their way for hundreds of years.
+    </summary>
+    <category>Navigation</category>
+  </fact>
+
+  <fact id="2">
+    <title>Constellations</title>
+    <summary>
+      A constellation is a pattern of stars that people imagined as pictures,
+      like animals, heroes, or objects in the sky.
+    </summary>
+    <category>Constellations</category>
+  </fact>
+
+  <fact id="3">
+    <title>Stars and Colors</title>
+    <summary>
+      Stars can look white, but they actually come in many colors. Blue stars
+      are usually hotter than red stars.
+    </summary>
+    <category>Science</category>
+  </fact>
+
+  <fact id="4">
+    <title>Our Closest Star</title>
+    <summary>
+      The Sun is a star too! It looks bigger and brighter because it is much
+      closer to Earth than the other stars.
+    </summary>
+    <category>Science</category>
+  </fact>
+</starFacts>

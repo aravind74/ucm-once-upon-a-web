@@ -1,4 +1,5 @@
-// js/page0-home.js
+//home.js
+//Created by Alvi Haroon
 $(document).ready(function () {
     $("#startStoryBtn").on("click", function () {
         var name = $("#reader-name").val().trim();
@@ -6,16 +7,13 @@ $(document).ready(function () {
         var $feedback = $("#home-feedback");
 
         if (name.length === 0) {
-            // simplest: ask for a name before starting
             $feedback.text("Please enter your name to start the story.");
             $feedback.removeClass("feedback-correct").addClass("feedback-wrong");
             return;
         }
-
         // store name and mode
         localStorage.setItem("readerName", name);
         localStorage.setItem("readerMode", mode);
-
         // go to first story page
         window.location.href = "storyPage1.html";
     });

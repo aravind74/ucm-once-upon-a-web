@@ -1,4 +1,5 @@
-// js/page6.js
+//storyPage6.js
+//Created by Aravind Sajeev Kumar
 $(document).ready(function () {
     var PAGE_ID = 6;
   
@@ -16,21 +17,28 @@ $(document).ready(function () {
           $("<p>").text(line).appendTo($storyText);
         });
       }
-    });
+    }); //loadStoryPage()
   
-    // 2) Load activity for page 6
+    // 2) Load activity for page 6 (open-ended description)
     loadActivityForPage(PAGE_ID, function (activity) {
       if (!activity) return;
   
       $("#activity-prompt-6").text(activity.prompt || "");
   
       var $textarea = $("#activity-textarea-6");
+      var $feedback = $("#activity-feedback-6");
+      var $checkBtn = $("#check-answer-6");
+  
       if (activity.placeholder) {
         $textarea.attr("placeholder", activity.placeholder);
       }
   
-      $("#check-answer-6").on("click", function () {
-        var $feedback = $("#activity-feedback-6");
+      function disableActivity() {
+        $textarea.prop("disabled", true);
+        $checkBtn.prop("disabled", true);
+      }
+  
+      $checkBtn.on("click", function () {
         var answer = $textarea.val().trim();
   
         if (answer.length === 0) {
@@ -48,10 +56,10 @@ $(document).ready(function () {
           "Beautiful description! You imagined the star really well. 🌟",
           true
         );
-  
-        // Optional: reward a star for any thoughtful answer
-        // addStar();
+        awardStarForPage(PAGE_ID);
+        disableActivity();
       });
-    });
-  });
+    }); //loadActivityForPage()
+
+  }); //ready end
   

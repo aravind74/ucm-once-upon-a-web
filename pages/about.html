@@ -1,48 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <title>About the Author</title>
+  <title>About the Authors – Luna and the Missing Star</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../style.css" />
 </head>
+
 <body>
-  <main>
-    <section id="about-page">
-      <h2>About the Author</h2>
+  <div class="page-wrapper" style="max-width: 1170px;">
 
-      <p><strong>Name:</strong> <span id="author-name">Loading...</span></p>
-      <p><strong>Role:</strong> <span id="author-role"></span></p>
-      <p id="author-bio"></p>
+    <!-- Header -->
+    <header class="site-header">
+      <h1 class="site-title">Meet the Authors</h1>
+      <div class="site-meta">
+        <span class="page-indicator">About the Authors</span>
+      </div>
+    </header>
 
-      <section id="about-feedback">
-        <h3>Send a Tiny Note</h3>
-        <form id="about-form">
-          <label for="about-email">Your email (optional):</label><br />
-          <input type="email" id="about-email" name="about-email" /><br /><br />
+    <!-- Main Content -->
+    <main class="page-content">
+      <section class="story-layout">
 
-          <label for="about-message">What did you like about the story?</label><br />
-          <textarea
-            id="about-message"
-            name="about-message"
-            rows="3"
-            cols="40"
-          ></textarea><br />
+        <!-- Left Column: Image -->
+        <div class="story-column illustration-column">
+          <div class="illustration about-illustration">
+            <img src="../assets/author.png" alt="Authors" class="about-author-image" style="width: 590px;" />
+          </div>
+        </div>
 
-          <button type="button" id="about-submit">Submit</button>
-        </form>
+        <!-- Right Column: Text -->
+        <div class="story-column text-column">
+          <!-- <h2 class="about-heading">Meet the Authors</h2> -->
 
-        <p id="about-feedback-text"></p>
+          <div id="authors-details-column">
+            <p>
+              <strong>Name:</strong>
+              <span id="author-name1">Loading...</span>
+            </p>
+            <p>
+              <strong>Role:</strong>
+              <span id="author-role1"></span>
+            </p>
+            <p id="author-bio1"></p>
+
+            <p>
+              <strong>Name:</strong>
+              <span id="author-name2">Loading...</span>
+            </p>
+            <p>
+              <strong>Role:</strong>
+              <span id="author-role2"></span>
+            </p>
+            <p id="author-bio2"></p>
+          </div>
+          <section id="about-feedback" class="activity-card">
+            <h3>Send a Tiny Note</h3>
+            <form id="about-form">
+              <label for="about-email">Your email (optional):</label><br />
+              <input type="email" id="about-email" name="about-email" class="section-control" /><br /><br />
+
+              <label for="about-message">What did you like about the story?</label><br />
+              <textarea id="about-message" name="about-message" rows="3" cols="40"
+                class="section-control"></textarea><br />
+
+              <button type="button" id="about-submit-button" class="primary-btn">
+                Submit
+              </button>
+              <button type="button" id="about-clear-button" class="primary-btn" style="margin-left: 8px;">
+                Clear
+              </button>
+              <button id="start-again-button" type="button" class="primary-btn" onclick="window.location.href='home.html'"
+                style="margin-left: 8px;">
+                Start Again
+              </button>
+              <p id="about-feedback-text" class="activity-feedback"></p>
+            </form>
+          </section>
+        </div>
       </section>
-    </section>
+    </main>
+  </div>
 
-    <nav>
-      <a href="page7.html">« Back to Story</a> |
-      <a href="page9-end.html">Go to Certificate »</a>
-    </nav>
-  </main>
-
+  <!-- Side Navigation Arrows -->
+  <div class="side-nav side-nav-left">
+    <a href="certificate.html" class="side-nav-link prev" aria-label="Previous page">
+      &#10094;
+    </a>
+  </div>
+  
+  <!-- Scripts: jQuery + shared + about-author -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="../js/shared.js"></script>
-  <script src="../js/page8-about.js"></script>
+  <script src="../shared.js"></script>
+  <script src="../js/about.js"></script>
 </body>
+
 </html>

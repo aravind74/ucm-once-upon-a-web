@@ -1,9 +1,10 @@
-// js/page3.js
+//storyPage3.js
+//Created by Aravind Sajeev Kumar
 $(document).ready(function () {
   var PAGE_ID = 3;
   let attempts = 0;
 
-  // 1) Load story for page 3
+  // 1) Load story
   loadStoryPage(PAGE_ID, function (page) {
     if (!page) return;
 
@@ -19,7 +20,7 @@ $(document).ready(function () {
     }
   });
 
-  // 2) Load activity for page 3 (select)
+  // 2) Load activity (dropdown)
   loadActivityForPage(PAGE_ID, function (activity) {
     if (!activity) return;
 
@@ -36,9 +37,16 @@ $(document).ready(function () {
           .appendTo($select);
       });
 
-      $("#check-answer-3").on("click", function () {
+      const $checkBtn = $("#check-answer-3");
+      const $feedback = $("#activity-feedback-3");
+
+      function disableActivityPermanently() {
+        $checkBtn.prop("disabled", true).addClass("btn-disabled");
+        $select.prop("disabled", true);
+      }
+
+      $checkBtn.on("click", function () {
         var mode = getReaderMode();
-        var $feedback = $("#activity-feedback-3");
         var selectedVal = $select.val();
 
         if (selectedVal === "") {
@@ -49,35 +57,40 @@ $(document).ready(function () {
         var selectedIndex = parseInt(selectedVal, 10);
 
         if (selectedIndex === activity.correctIndex) {
-          setFeedback(
-            $feedback,
-            "Correct! Oliver the owl helped Luna. 🌟",
-            true
-          );
-        } else {
-          if (mode === "guided") {
+          setFeedback($feedback, "Correct! Oliver the owl helped Luna. 🌟", true);
+          awardStarForPage(PAGE_ID);
+          disableActivityPermanently();
+          return;
+        }
+
+        switch (mode) {
+          case "guided":
             setFeedback(
               $feedback,
               "Hint: Who was sitting high up in the tree, giving directions? 😊",
               false
             );
-          } else if (mode === "normal") {
-            setFeedback($feedback, "Not quite, try again!", false);
-          } else if (mode === "challenge") {
-            attempts++;
+            break;
 
+          case "normal":
+            setFeedback($feedback, "Not quite, try again!", false);
+            break;
+
+          case "challenge":
+            attempts++;
             if (attempts >= 2) {
-              $("#check-answer-3").prop("disabled", true);
               setFeedback($feedback, "No more attempts in Challenge Mode.", false);
+              disableActivityPermanently();
             } else {
-              setFeedback($feedback, "Incorrect. One last try!", false);
-              $("#check-answer-3").prop("disabled", true);
+              setFeedback($feedback, "Incorrect. One last try! Take 5 seconds to think before you answer.", false);
+
+              $checkBtn.prop("disabled", true).addClass("btn-disabled");
 
               setTimeout(function () {
-                $("#check-answer-3").prop("disabled", false);
+                $checkBtn.prop("disabled", false).removeClass("btn-disabled");
               }, 5000);
             }
-          }
+            break;
         }
       });
     }

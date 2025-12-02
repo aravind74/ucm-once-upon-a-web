@@ -1,4 +1,5 @@
-// js/page4.js
+//storyPage4.js
+//Created by Aravind Sajeev Kumar
 $(document).ready(function () {
     var PAGE_ID = 4;
     let attempts = 0;
@@ -19,80 +20,100 @@ $(document).ready(function () {
       }
     });
   
-    // 2) Load activity for page 4 (emoji radios)
+    // 2) Load activity for page 4 (fill in the blank, simple text input)
     loadActivityForPage(PAGE_ID, function (activity) {
       if (!activity) return;
   
-      $("#activity-prompt-4").text(activity.prompt || "");
+      $("#activity-prompt-4").text(activity.prompt || "Fill in the missing word.");
   
       var $container = $("#activity-options-4");
       $container.empty();
   
-      if (activity.type === "emoji" && Array.isArray(activity.options)) {
-        activity.options.forEach(function (emoji, index) {
-          var id = "p4-emoji-" + index;
-  
-          var $input = $("<input>")
-            .attr("type", "radio")
-            .attr("name", "p4-emoji")
-            .attr("id", id)
-            .val(index);
-  
-          var $label = $("<label>")
-            .attr("for", id)
-            .addClass("option-label")
-            .text(emoji);
-  
-          var $wrap = $("<div>").addClass("option-row");
-          $wrap.append($input).append($label);
-          $container.append($wrap);
-        });
-  
-        $("#check-answer-4").on("click", function () {
-          var mode = getReaderMode();
-          var $feedback = $("#activity-feedback-4");
-          var selectedVal = $("input[name='p4-emoji']:checked").val();
-  
-          if (selectedVal === undefined) {
-            setFeedback($feedback, "Please choose an emoji first.", null);
-            return;
-          }
-  
-          var selectedIndex = parseInt(selectedVal, 10);
-  
-          if (selectedIndex === activity.correctIndex) {
-            setFeedback(
-              $feedback,
-              "Nice! Luna feels happy and brave crossing the river. 🌟",
-              true
-            );
-          } else {
-            if (mode === "guided") {
-              setFeedback(
-                $feedback,
-                "Hint: She’s being very brave while crossing, not scared. 😊",
-                false
-              );
-            } else if (mode === "normal") {
-              setFeedback($feedback, "Not quite, try again!", false);
-            } else if (mode === "challenge") {
-              attempts++;
-  
-              if (attempts >= 2) {
-                $("#check-answer-4").prop("disabled", true);
-                setFeedback($feedback, "No more attempts in Challenge Mode.", false);
-              } else {
-                setFeedback($feedback, "Incorrect. One last try!", false);
-                $("#check-answer-4").prop("disabled", true);
-  
-                setTimeout(function () {
-                  $("#check-answer-4").prop("disabled", false);
-                }, 5000);
-              }
-            }
-          }
-        });
+      if (activity.type !== "fill") {
+        // If JSON type doesn't match, don't try to render
+        return;
       }
+  
+      var sentenceText =
+        activity.sentence || "Luna stepped carefully on the _________ stones.";
+      var correctAnswer = (activity.answer || "")
+        .toLowerCase()
+        .trim();
+  
+      // Show the sentence
+      var $sentence = $("<p>")
+        .addClass("fill-sentence")
+        .text(sentenceText);
+      $container.append($sentence);
+  
+      // Simple text input
+      var $input = $("<input>")
+        .attr("type", "text")
+        .attr("id", "activity-input-4")
+        .attr("autocomplete", "off")
+        .addClass("section-control")
+        .attr("placeholder", "Type the missing word here");
+      $container.append($input);
+  
+      const $checkBtn = $("#check-answer-4");
+      const $feedback = $("#activity-feedback-4");
+  
+      function disableActivityPermanently() {
+        $checkBtn.prop("disabled", true);
+        $input.prop("disabled", true);
+      }
+  
+      $checkBtn.on("click", function () {
+        var mode = getReaderMode();
+        var userAnswer = ($input.val() || "")
+          .toLowerCase()
+          .trim();
+  
+        if (!userAnswer) {
+          setFeedback(
+            $feedback,
+            "Please type the missing word before checking.",
+            null
+          );
+          return;
+        }
+  
+        if (correctAnswer && userAnswer === correctAnswer) {
+          setFeedback(
+            $feedback,
+            "Great job! Luna crossed using the stepping stones. 🌟",
+            true
+          );
+          awardStarForPage(PAGE_ID);
+          disableActivityPermanently();
+          return;
+        }
+
+        if (mode === "guided") {
+          setFeedback(
+            $feedback,
+            "Hint: Look at what Luna is standing on in the picture. It’s a kind of stone. 😊",
+            false
+          );
+        } else if (mode === "normal") {
+          setFeedback($feedback, "Not quite, try again!", false);
+        } else if (mode === "challenge") {
+          attempts++;
+  
+          if (attempts >= 2) {
+            setFeedback($feedback, "No more attempts in Challenge Mode.", false);
+            disableActivityPermanently();
+          } else {
+            setFeedback($feedback, "Incorrect. One last try! Take 5 seconds to think before you answer.", false);
+  
+            $checkBtn.prop("disabled", true);
+
+            setTimeout(function () {
+              $checkBtn.prop("disabled", false);
+            }, 5000);
+          }
+        }
+      });
     });
   });
   
